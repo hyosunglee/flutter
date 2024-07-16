@@ -1,0 +1,21 @@
+
+1. 아래 구조
+2. 텍스트
+3. 이미지
+4. 프레임
+
+@override
+Widget build() {
+	return app(
+		home: Text(‘안녕’),
+			    Image.asset(‘경로’),
+			    Container(
+				    width: 20,
+				    height: 20,
+				    color: Colors.blue,
+			    ),
+	);
+}
+
+
+
