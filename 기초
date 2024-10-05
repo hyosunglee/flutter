@@ -7,5 +7,8 @@ app.dart
 
 stful
 
+shift + 커서 다중 선택
 
-	shift + 커서 다중 선택
+Tab 연결 
+
+_handleBackPressed - 뒤로버튼 기능
