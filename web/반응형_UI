@@ -1,0 +1,59 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Responsive Flutter Web',
+      home: ResponsivePage(),
+    );
+  }
+}
+
+class ResponsivePage extends StatelessWidget {
+  const ResponsivePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('반응형 UI 연습')),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth > 600) {
+            return largeScreenLayout();
+          } else {
+            return smallScreenLayout();
+          }
+        },
+      ),
+    );
+  }
+
+  Widget largeScreenLayout() {
+    return Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('🌟 큰 화면! (Desktop View)', style: TextStyle(fontSize: 24)),
+        ],
+      ),
+    );
+  }
+
+  Widget smallScreenLayout() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('📱 작은 화면! (Mobile View)', style: TextStyle(fontSize: 24)),
+        ],
+      ),
+    );
+  }
+}
