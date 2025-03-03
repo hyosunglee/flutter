@@ -296,5 +296,4 @@ class _MyAppState extends State<MyApp> {
 
 ---
 
-🔥 **이제 1주차 끝!**  
-다음 주부터 Firestore와 상태 관리 공부하면서 기능을 더 확장해보자! 🚀
+
