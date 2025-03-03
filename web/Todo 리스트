@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      title: 'Flutter Todo App',
+      home: TodoPage(),
+    );
+  }
+}
+
+class TodoController extends GetxController {
+  var todos = <String>[].obs;
+
+  void addTodo(String task) {
+    todos.add(task);
+  }
+
+  void removeTodo(int index) {
+    todos.removeAt(index);
+  }
+}
+
+class TodoPage extends StatelessWidget {
+  final TodoController controller = Get.put(TodoController());
+  final TextEditingController textController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Todo List')),
+      body: Column(
+        children: [
+          TextField(
+            controller: textController,
+            decoration: const InputDecoration(hintText: '할 일을 입력하세요'),
+            onSubmitted: (value) {
+              controller.addTodo(value);
+              textController.clear();
+            },
+          ),
+          Expanded(
+            child: Obx(() => ListView.builder(
+                  itemCount: controller.todos.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(controller.todos[index]),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.delete),
+                        onPressed: () => controller.removeTodo(index),
+                      ),
+                    );
+                  },
+                )),
+          ),
+        ],
+      ),
+    );
+  }
+}
