@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      title: 'Flutter Web GetX',
+      home: CounterPage(),
+    );
+  }
+}
+
+class CounterController extends GetxController {
+  var count = 0.obs;
+
+  void increment() {
+    count++;
+  }
+}
+
+class CounterPage extends StatelessWidget {
+  final CounterController controller = Get.put(CounterController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('GetX 상태 관리')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Obx(() => Text('Count: ${controller.count}', style: const TextStyle(fontSize: 24))),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: controller.increment,
+              child: const Text('카운트 증가'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
